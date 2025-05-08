@@ -27,6 +27,8 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
+          sudo apt-get update
+          sudo apt-get install -y unixodbc-dev
       
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -34,15 +36,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.10'
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y unixodbc-dev
-         
        # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
